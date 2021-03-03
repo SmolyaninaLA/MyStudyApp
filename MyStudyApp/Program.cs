@@ -6,6 +6,8 @@ class MainClass
     {
         string myName;
         myName = "Jane";
+        var age = 27;
+        string favcolor = "black";
 
         Console.WriteLine(myName);
         Console.WriteLine("\t Привет, \n мир");
@@ -21,6 +23,8 @@ class MainClass
         myFavoriteDay = DayOfWeek.Sunday;
 
         Console.WriteLine("Мой любимфй день недели " + myFavoriteDay);
+
+        Console.WriteLine("{0} \n {1} \n {2}", myName, age, favcolor);
 
         Console.ReadKey();
 
