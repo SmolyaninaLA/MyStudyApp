@@ -15,6 +15,11 @@ class MainClass
 
         Console.WriteLine("\t Меня зовут \n  Jane");
 
+        Console.WriteLine("\u0040");
+
+        Console.WriteLine("\u0023");
+
+        Console.WriteLine(52);
 
         Console.ReadKey();
 
