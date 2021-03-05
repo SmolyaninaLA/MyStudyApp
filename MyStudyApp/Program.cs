@@ -47,7 +47,7 @@ class MainClass
 
 
         Console.Write("What your favorite day of  week? ");
-        DayOfWeek Day = (DayOfWeek)(DaysOfWeek)int.Parse(Console.ReadLine());
+        var Day = (DaysOfWeek)int.Parse(Console.ReadLine());
 
        
 
