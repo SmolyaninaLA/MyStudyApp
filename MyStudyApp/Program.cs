@@ -38,6 +38,24 @@ class MainClass
        result = 10 % 3;
         Console.WriteLine("Value: {0}", result);
 
+        Console.Write("Enter yuor name: ");
+        string name = Console.ReadLine();
+
+
+        Console.Write("Enter yuor age: ");
+        byte age1 = checked((byte) int.Parse(Console.ReadLine()));
+
+
+        Console.Write("What your favorite day of  week? ");
+        DayOfWeek Day = (DayOfWeek)(DaysOfWeek)int.Parse(Console.ReadLine());
+
+       
+
+        Console.WriteLine(" Your name is {0} and age is {1}", name, age1);
+
+        Console.WriteLine(" Your favorite day is {0}",Day );
+
+               
         Console.ReadKey();
     }
 
