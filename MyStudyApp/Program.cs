@@ -24,10 +24,21 @@ class MainClass
 
         Console.WriteLine("Мой любимфй день недели " + myFavoriteDay);
 
-        Console.WriteLine("{0} \n {1} \n {2}", myName, age, favcolor);
+        Console.WriteLine("{0} \n  {1} \n {2}", myName,age,favcolor);
+
+        
+        double result = 5.0 / 2.0 * 3.0;
+        Console.WriteLine("Value: {0}", result);
+
+        int k = -10;
+        int b = 20;
+        b = b - (-k);
+        Console.WriteLine("Value: {0}", b);
+
+       result = 10 % 3;
+        Console.WriteLine("Value: {0}", result);
 
         Console.ReadKey();
-
     }
 
     enum DaysOfWeek : byte
@@ -48,5 +59,6 @@ class MainClass
      
     }
 
+ 
 
 }
