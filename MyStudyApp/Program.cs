@@ -7,18 +7,43 @@ class MainClass
     public static void Main(string[] args)
     {
        
-        int[,] array = { { 1, 2, 3 }, { 5, 6, 7 } ,{ 8,9,10},{ 11,12,13} };
+        int[] array = { 5,6,9,1,2,3,4 };
+        int   eMax;
+        int SumEl = 0;
 
-        Console.WriteLine("Количество строк: {0} ",array.GetUpperBound(0) + 1 );
-        Console.WriteLine("Количество столбцов: {0} ", array.GetUpperBound(1) + 1);
+        Console.Write("Исходный массив:  ");
 
-        for (int i = 0; i < array.GetUpperBound(1) + 1; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int j = 0; j < array.GetUpperBound(0) + 1; j++)
-                Console.Write(array[j, i] + " ");
-            Console.WriteLine();
+         
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        Console.Write("Сортировка методом пузырька: ");
+        
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            for (int j = 0; j < array.Length - i -1; j++  )  
+
+             if (array[j] > array[j+1] )
+                {
+                    eMax = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = eMax;
+                }
+           
         }
 
-        Console.ReadKey();
+            
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            SumEl = SumEl + array[i];
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        Console.WriteLine("Сумма элементов = {0}",SumEl);    
+
+            Console.ReadKey();
     }
 }
