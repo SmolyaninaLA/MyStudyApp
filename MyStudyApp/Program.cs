@@ -2,25 +2,23 @@
 
 class MainClass
 {
-    private const string V = " ";
+  
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("Введите свое имя");
+       
+        int[,] array = { { 1, 2, 3 }, { 5, 6, 7 } ,{ 8,9,10},{ 11,12,13} };
 
-        var Name = Console.ReadLine().ToString();
-        string NewName = "";
-   
-        
-      
-        for (int i = Name.Length - 1 ; i >= 0 ; i--)
+        Console.WriteLine("Количество строк: {0} ",array.GetUpperBound(0) + 1 );
+        Console.WriteLine("Количество столбцов: {0} ", array.GetUpperBound(1) + 1);
+
+        for (int i = 0; i < array.GetUpperBound(1) + 1; i++)
         {
-            NewName  = NewName + Name[i] + " ";
-                      
+            for (int j = 0; j < array.GetUpperBound(0) + 1; j++)
+                Console.Write(array[j, i] + " ");
+            Console.WriteLine();
         }
-        Console.WriteLine("Ваше имя по букваи:");
-        Console.WriteLine("{0} Последняя буква вашего имени : {1}", NewName, Name[Name.Length - 1]);
-        Console.WriteLine("Первая буква имени :{0}",Name[0] );
+
         Console.ReadKey();
     }
 }
