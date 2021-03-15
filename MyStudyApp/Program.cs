@@ -7,20 +7,21 @@ class MainClass
     public static void Main(string[] args)
     {
 
-        int[][] array = new int[3][];
+        var array = new int[] { 1, 6, 0, 4, 12, -8, -45, 10 };
+        int countP = 0;
 
-        array[0] = new int[2] { 1, 2 };
-        array[1] = new int[3] { 1, 2,3 };
-        array[2] = new int[5] { 1, 2,3 ,4,5};
+        for(int i = 0; i < array.Length ; i++)
 
-        foreach (var row in array)
-        {
-            foreach (var column in row)
             {
-                Console.Write(column + " ");
+            if(array[i] > 0 )
+            {
+                countP++;
             }
-           
-        }
+              
+            }
+
+        Console.WriteLine("Количество положительных чисел : {0}",countP);
+
         Console.ReadKey();
     }
 }
