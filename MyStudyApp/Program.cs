@@ -7,39 +7,19 @@ class MainClass
     public static void Main(string[] args)
     {
 
-       int[,] array = { {-5, 6,9,1,2,-3 },{ -8,8,1,1,2,-3} };
-        int per;
+        (string name, int age) anketa;
 
-        for(int i = 0; i < array.GetUpperBound(0) + 1; i++)
-        {
-            for (int j = 0; j < array.GetUpperBound(1) ; j++)
-            
-                for (int k = j + 1; k < array.GetUpperBound(1) + 1; k++)
-                {
-                    if (array[i,j] > array[i,k]) 
-                    {
-                        per = array[i,k];
-                        array[i,k] = array[i,j];
-                        array[i,j] = per;
-                    }
+        Console.WriteLine("Ведите имя :");
+        anketa.name = Console.ReadLine();
 
-                }
+        Console.WriteLine("Введитн возраст цифрами :");
+        anketa.age = Convert.ToInt32( Console.ReadLine());
 
-            
-             
-                  
-         }
 
-        for (int k = 0; k < array.GetUpperBound(0) + 1; k++)
-        {
-            for (int i = 0; i < array.GetUpperBound(1) + 1; i++)
-            {
-                Console.Write(array[k,i] + " ");
-            }
-            Console.WriteLine();
-        } 
+        Console.WriteLine("Ваше имя {0}",anketa.name);
+        Console.WriteLine("Ваш возраст {0}",anketa.age);
 
-            
+
 
         Console.ReadKey();
     }
