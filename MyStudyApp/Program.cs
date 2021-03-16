@@ -7,17 +7,19 @@ class MainClass
     public static void Main(string[] args)
     {
 
-        (string name, int age) anketa;
+        var ( name,  age) = ("Евгения",27);
+        Console.WriteLine("Имя {0}", name);
+        Console.WriteLine("Возраст {0}",age);
 
         Console.WriteLine("Ведите имя :");
-        anketa.name = Console.ReadLine();
+        name = Console.ReadLine();
 
         Console.WriteLine("Введитн возраст цифрами :");
-        anketa.age = Convert.ToInt32( Console.ReadLine());
+        age = Convert.ToInt32( Console.ReadLine());
 
 
-        Console.WriteLine("Ваше имя {0}",anketa.name);
-        Console.WriteLine("Ваш возраст {0}",anketa.age);
+        Console.WriteLine("Ваше имя {0}",name);
+        Console.WriteLine("Ваш возраст {0}",age);
 
 
 
