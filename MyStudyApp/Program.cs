@@ -3,7 +3,7 @@
 class MainClass
 {
 
-    static string ShowColor(string username, int userage)
+    static string ShowColor( string username, int userage)
     {
         Console.WriteLine("{0} , {1} лет \nНапишите свой любимый цвет на английском с маленькой буквы", username,userage);
         var color = Console.ReadLine();
@@ -37,6 +37,16 @@ class MainClass
                 break;
         }
         return color;
+    }
+
+    static void ShowColors(string username,params string[] favcolors)
+    {
+        Console.WriteLine("{0} , ваши любимые цвета :",username);
+        foreach (var color in favcolors)
+        {
+            Console.WriteLine(color);
+        }
+
     }
 
     static int[] GetArrayFromConsole()
@@ -76,7 +86,7 @@ class MainClass
 
     public static void Main(string[] args)
     {
-        /*
+       
          (string name, int age) anketa;
 
 
@@ -94,14 +104,11 @@ class MainClass
          {
              favcolors[i] = ShowColor(anketa.name,anketa.age);
          }
-         Console.WriteLine("Ваши любимые цвета :");
-         foreach (var color in favcolors)
-         {
-             Console.WriteLine(color);
-         }
+
+        ShowColors(anketa.name,favcolors);
 
          Console.ReadKey();
-       */
+     /*
 
         var array = SortArray(GetArrayFromConsole());
             
@@ -109,6 +116,6 @@ class MainClass
         {
             Console.Write(array[i] + " ");
         }
-        
+       */ 
     }
 }
