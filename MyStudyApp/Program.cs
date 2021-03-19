@@ -99,6 +99,13 @@ class MainClass
 
 
       
+    } 
+
+    static void ChangeName(ref string name)
+    {
+        Console.WriteLine("Введите имя");
+        name = Console.ReadLine();
+        
     }
 
     public static void Main(string[] args)
@@ -124,13 +131,19 @@ class MainClass
 
          ShowColors(anketa.name,favcolors);
 
-          Console.ReadKey();
-    */
+       
+    
 
         var array = GetArrayFromConsole(6);
 
         ShwArray(true, array);
-       
-       
+       */
+
+        var someName = "Евгения";
+        Console.WriteLine(someName);
+       ChangeName(ref someName); 
+        Console.WriteLine(someName);
+
+        Console.ReadKey();  
     }
 }
