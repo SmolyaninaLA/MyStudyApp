@@ -3,9 +3,9 @@
 class MainClass
 {
 
-    static string ShowColor(string username)
+    static string ShowColor(string username, int userage)
     {
-        Console.WriteLine("{0} , напишите свой любимый цвет на английском с маленькой буквы", username);
+        Console.WriteLine("{0} , {1} лет \nНапишите свой любимый цвет на английском с маленькой буквы", username,userage);
         var color = Console.ReadLine();
         
         switch (color)
@@ -70,7 +70,7 @@ class MainClass
 
         for (int i = 0; i < favcolors.Length; i++ )
         {
-            favcolors[i] = ShowColor(anketa.name);
+            favcolors[i] = ShowColor(anketa.name,anketa.age);
         }
         Console.WriteLine("Ваши любимые цвета :");
         foreach (var color in favcolors)
