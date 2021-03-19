@@ -39,7 +39,18 @@ class MainClass
         return color;
     }
 
-    static string GetDataFromConsole() => Console.ReadLine();
+    static int[] GetArrayFromConsole()
+    {
+        var result = new int[5];
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+            result[i] = int.Parse(Console.ReadLine());
+        }
+
+        return result;
+    }
 
     public static void Main(string[] args)
     {
@@ -56,7 +67,7 @@ class MainClass
 
         Console.WriteLine("Ваше имя: {0}", name);
         Console.WriteLine("Ваш возраст: {0}", age);
-        */
+        
         var favcolors = new string[3];
 
         for (int i = 0; i < favcolors.Length; i++ )
@@ -70,8 +81,29 @@ class MainClass
         }
 
         Console.ReadKey();
+        */
 
+        var array =  GetArrayFromConsole();
+        int per;
 
+        for ( int i = 0; i < array.Length -1; i++)
+        {
+            for (int j = i + 1; j < array.Length; j++)
+            {
+                if (array[i] > array[j])
+                {
+                    per = array[j];
+                    array[j] = array[i];
+                    array[i] = per;
+                }
+                     
 
+            }
+        }
+
+        for (int i = 0; i < array.Length ; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
     }
 }
