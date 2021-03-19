@@ -2,66 +2,76 @@
 
 class MainClass
 {
-  
+
+    static string ShowColor()
+    {
+        Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+        var color = Console.ReadLine();
+
+        switch (color)
+        {
+            case "red":
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is red!");
+                break;
+
+            case "green":
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is green!");
+                break;
+            case "cyan":
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is cyan!");
+                break;
+            default:
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("Your color is yellow!");
+                break;
+        }
+        return color;
+    }
+
+    static string GetDataFromConsole() => Console.ReadLine();
 
     public static void Main(string[] args)
     {
+        /*
+        var (name, age) = ("Евгения", 27);
 
-        (string Name, string LastName, string Login, int LoginLength, bool HasPet, string[] favcolors, double Age) User;
+        Console.WriteLine("Мое имя: {0}", name);
+        Console.WriteLine("Мой возраст: {0}", age);
 
-        for (int k = 0; k < 3; k++)
+        Console.Write("Введите имя: ");
+        name = Console.ReadLine();
+        Console.Write("Введите возрас с цифрами:");
+        age = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Ваше имя: {0}", name);
+        Console.WriteLine("Ваш возраст: {0}", age);
+        */
+        var favcolors = new string[3];
+
+        for (int i = 0; i < favcolors.Length; i++ )
         {
-            Console.WriteLine("Ведите имя  :");
-            User.Name = Console.ReadLine();
-
-            Console.WriteLine("Введитr фамилию :");
-            User.LastName = Console.ReadLine();
-
-            Console.WriteLine("Введитr логин:");
-            User.Login = Console.ReadLine();
-
-            Console.WriteLine("Есть ли у вас животные? Да или Нет");
-            var res = Console.ReadLine().ToUpper();
-
-
-
-            User.favcolors = new string[3];
-
-            Console.WriteLine("Введите 3 любимых цвета ");
-            for (int i = 0; i < User.favcolors.Length; i++)
-            {
-                User.favcolors[i] = Console.ReadLine();
-            }
-
-            Console.WriteLine("Введитr возраст  :");
-            User.Age = double.Parse(Console.ReadLine());
-
-            User.LoginLength = User.Login.Length;
-
-            Console.WriteLine("Вас зовут {0} {1} , вам {2} лет ", User.Name, User.LastName, User.Age);
-            Console.WriteLine("Ваш логин  {0} , длина логина  = {1}", User.Login, User.LoginLength);
-
-            User.HasPet = false;
-
-            if (res == "ДА")
-            {
-                User.HasPet = true;
-            }
-
-
-            if (User.HasPet)
-            {
-                Console.WriteLine(" У вас есть домашний любимец");
-            }
-
-            for (int i = 0; i < User.favcolors.Length; i++)
-            {
-                Console.Write( User.favcolors[i] + " ");
-            }
-
-
+            favcolors[i] = ShowColor();
+        }
+        Console.WriteLine("Ваши любимые цвета :");
+        foreach (var color in favcolors)
+        {
+            Console.WriteLine(color);
         }
 
         Console.ReadKey();
+
+
+
     }
 }
