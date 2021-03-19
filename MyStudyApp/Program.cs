@@ -39,7 +39,7 @@ class MainClass
         return color;
     }
 
-    static void ShowColors(string username,params string[] favcolors)
+    static void ShowColors(string username , params string[] favcolors)
     {
         Console.WriteLine("{0} , ваши любимые цвета :",username);
         foreach (var color in favcolors)
@@ -49,9 +49,9 @@ class MainClass
 
     }
 
-    static int[] GetArrayFromConsole()
+    static int[] GetArrayFromConsole( int num = 5 )
     {
-        var result = new int[5];
+        var result = new int[num];
 
         for (int i = 0; i < result.Length; i++)
         {
@@ -84,38 +84,53 @@ class MainClass
         return num;
     }
 
+    static void ShwArray(bool sort = false, params int[] nums )
+    {
+       var  arraysort = nums;
+        if (sort)
+        {
+            arraysort = SortArray(nums);
+         
+        }
+       for (int i = 0; i < arraysort.Length; i++)
+            {
+                Console.Write(arraysort[i] + " ");
+            }
+
+
+      
+    }
+
     public static void Main(string[] args)
     {
+        /*
+          (string name, int age) anketa;
+
+
+          Console.Write("Введите имя: ");
+          anketa.name = Console.ReadLine();
+          Console.Write("Введите возрас с цифрами:");
+          anketa.age = Convert.ToInt32(Console.ReadLine());
+
+          Console.WriteLine("Ваше имя: {0}", anketa.name);
+          Console.WriteLine("Ваш возраст: {0}", anketa.age);
+
+          var favcolors = new string[3];
+
+          for (int i = 0; i < favcolors.Length; i++ )
+          {
+              favcolors[i] = ShowColor(anketa.name,anketa.age);
+          }
+
+         ShowColors(anketa.name,favcolors);
+
+          Console.ReadKey();
+    */
+
+        var array = GetArrayFromConsole(6);
+
+        ShwArray(true, array);
        
-         (string name, int age) anketa;
-
-
-         Console.Write("Введите имя: ");
-         anketa.name = Console.ReadLine();
-         Console.Write("Введите возрас с цифрами:");
-         anketa.age = Convert.ToInt32(Console.ReadLine());
-
-         Console.WriteLine("Ваше имя: {0}", anketa.name);
-         Console.WriteLine("Ваш возраст: {0}", anketa.age);
-
-         var favcolors = new string[3];
-
-         for (int i = 0; i < favcolors.Length; i++ )
-         {
-             favcolors[i] = ShowColor(anketa.name,anketa.age);
-         }
-
-        ShowColors(anketa.name,favcolors);
-
-         Console.ReadKey();
-     /*
-
-        var array = SortArray(GetArrayFromConsole());
-            
-        for (int i = 0; i < array.Length ; i++)
-        {
-            Console.Write(array[i] + " ");
-        }
-       */ 
+       
     }
 }
