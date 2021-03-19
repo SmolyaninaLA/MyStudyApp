@@ -3,11 +3,11 @@
 class MainClass
 {
 
-    static string ShowColor()
+    static string ShowColor(string username)
     {
-        Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+        Console.WriteLine("{0} , напишите свой любимый цвет на английском с маленькой буквы", username);
         var color = Console.ReadLine();
-
+        
         switch (color)
         {
             case "red":
@@ -54,25 +54,23 @@ class MainClass
 
     public static void Main(string[] args)
     {
-        /*
-        var (name, age) = ("Евгения", 27);
+       
+        (string name, int age) anketa;
 
-        Console.WriteLine("Мое имя: {0}", name);
-        Console.WriteLine("Мой возраст: {0}", age);
-
+        
         Console.Write("Введите имя: ");
-        name = Console.ReadLine();
+        anketa.name = Console.ReadLine();
         Console.Write("Введите возрас с цифрами:");
-        age = Convert.ToInt32(Console.ReadLine());
+        anketa.age = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Ваше имя: {0}", name);
-        Console.WriteLine("Ваш возраст: {0}", age);
+        Console.WriteLine("Ваше имя: {0}", anketa.name);
+        Console.WriteLine("Ваш возраст: {0}", anketa.age);
         
         var favcolors = new string[3];
 
         for (int i = 0; i < favcolors.Length; i++ )
         {
-            favcolors[i] = ShowColor();
+            favcolors[i] = ShowColor(anketa.name);
         }
         Console.WriteLine("Ваши любимые цвета :");
         foreach (var color in favcolors)
@@ -81,8 +79,8 @@ class MainClass
         }
 
         Console.ReadKey();
-        */
-
+      
+        /*
         var array =  GetArrayFromConsole();
         int per;
 
@@ -105,5 +103,6 @@ class MainClass
         {
             Console.Write(array[i] + " ");
         }
+        */
     }
 }
