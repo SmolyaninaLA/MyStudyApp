@@ -48,10 +48,16 @@ class MainClass
             Echo(str, deep);
 
             Console.ReadKey();
-        */
+        
 
         var factorial = GetFactorial(20);
         Console.WriteLine(factorial);
+
+        */
+
+        var st = PowerUp(2, 4);
+        Console.WriteLine(st);
+
         Console.ReadKey();
     }
 
@@ -187,5 +193,26 @@ class MainClass
             return n * GetFactorial(n - 1);
         }
         
+    }
+
+    private static int PowerUp(int N, byte pow)
+    {
+        if (pow == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            if (pow == 1 )
+            {
+                return N;
+
+            }
+           else
+            {
+                return N * PowerUp(N, --pow);
+            }
+        }
+
     }
 }
