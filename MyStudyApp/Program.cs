@@ -36,7 +36,7 @@ class MainClass
         Console.WriteLine(someName);
         ChangeName(ref someName);
         Console.WriteLine(someName);
-        */
+     
 
        
             Console.WriteLine("Напишите что-то");
@@ -48,8 +48,11 @@ class MainClass
             Echo(str, deep);
 
             Console.ReadKey();
-       
+        */
 
+        var factorial = GetFactorial(20);
+        Console.WriteLine(factorial);
+        Console.ReadKey();
     }
 
     static string ShowColor( string username, int userage)
@@ -173,5 +176,16 @@ class MainClass
         }
     }
 
-   
+   static decimal GetFactorial(int n)
+    {
+        if (n == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return n * GetFactorial(n - 1);
+        }
+        
+    }
 }
