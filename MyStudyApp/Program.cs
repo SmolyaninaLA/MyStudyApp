@@ -2,177 +2,189 @@
 
 class MainClass
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        var anketa = GetAnketa();
-
-        ShowAnketa(anketa);
-
-       
-        Console.ReadKey();
-    }
-    //проверка корректности
-    static bool CheckCorrect( string param, out int intParam )
-    {
-    
-        if (int.TryParse(param, out int par))
+        public static void Main(string[] args)
         {
-            if (par <= 0)
-            {
-                intParam = par;
-                return false;
-            }
-            else
-            {
-                intParam = par;
-                return true;
-            }
-                
-        }
-        else
-        {
-            intParam = 0;
-            return  false;
         }
     }
 
-   //клички питомцев
-    static string[] GetPetsName(int CountPets )
+    public abstract class Pay
     {
-        var mas = new string[CountPets];
-        if (CountPets > 0)
-        {
-            Console.WriteLine("Введите клички {0} питомцкв", CountPets);
 
-            for (int i = 0; i < mas.Length; i++)
+        public static decimal Sum { get; set; }
+        public static int NomOrder { get; set; }
+
+        public Pay(decimal sum, int nomorder)
+        {
+            Sum = sum;
+            NomOrder = nomorder;
+        }
+
+        public abstract void PayOrder();
+
+    }
+    public class PayOrderCustomer : Pay
+    {
+        private string NomCard;
+
+
+        public string Nomcard
+        {
+            set
             {
-                mas[i] = Console.ReadLine();
+                if (value == null)
+                {
+                    NomCard = "no";
+                }
+                else
+                {
+                    NomCard = value;
+                }
+            }
+            get
+            {
+                return NomCard;
             }
         }
-        
-        return mas;
-    }
-    //отображение не консили кличек
-    static void ShowPets(string username, params string[] pets)
-    {
-        if (pets.Length > 0)
+
+
+
+        public PayOrderCustomer(string nomcard) : base(Sum, NomOrder)
         {
-            Console.WriteLine("{0} , ваши домашние животные :", username);
-            foreach (var pet in pets)
-            {
-                Console.WriteLine(pet);
-            }
+            this.Nomcard = nomcard;
         }
-     
 
-    }
-    //массив любимых красок
 
-    static string[] GetFavoritColors (int CountColors)
-    {
-        var mas = new string[CountColors ];
-        if (CountColors > 0)
+
+        public override void PayOrder()
         {
-            Console.WriteLine("Введите {0} предпочтительных цветов ", CountColors);
 
-            for (int i = 0; i < mas.Length; i++)
-            {
-                mas[i] = Console.ReadLine();
-            }
         }
-         return mas;
-    }
-        
 
-    static void ShowColors(string username , params string[] favcolors)
-    {
-        if (favcolors.Length > 0)
+        PayNal PayN;
+        public PayOrderCustomer(PayNal pn) : base(Sum, NomOrder)
         {
-            Console.WriteLine("{0} , ваши любимые цвета :", username);
-            foreach (var color in favcolors)
-            {
-                Console.WriteLine(color);
-            }
+            PayN = pn;
         }
-       
-
     }
 
-    
-    static (string name, string lastName, int age , bool hasPets, int countPets, int CountColors, string[] PetsName, string[] favoritColors) GetAnketa()
+    public class PayNal
     {
-       (string name, string lastName, int age, bool hasPets, int countPets, int CountColors, string[] PetsName, string[] favoritColors) anketa;
-        int intPar;
-        string strPar;
+        //оплата наличкой
+    }
 
-       Console.Write("Введите имя: ");
-       anketa.name = Console.ReadLine();
+    public abstract class Delivery
+    {
+        public abstract string Address { get; }
+        public DateTime DateDelivery;
+    }
 
-        Console.Write("Введите фамилию: ");
-       anketa.lastName = Console.ReadLine();
+    public class HomeDelivery : Delivery
+    {
+        protected string address;
 
-        Console.Write("Введите возраст (полных лет) цифрами :");
-
-        strPar = Console.ReadLine();
-        while (!CheckCorrect(strPar, out intPar))
+        public override string Address
         {
-            Console.Write("Возраст введен некорртно, повторите ввод еще раз :");
-            strPar = Console.ReadLine();
-        }
-
-        anketa.age = intPar;
-
-        Console.Write("{0}, у вас есть питомец 'да или 'нет' ? ", anketa.name);
-        string res = (Console.ReadLine()).ToUpper();
-
-        anketa.hasPets = false;
-        if (res == "ДА")
-        {
-            anketa.hasPets = true;
-        }
-        anketa.countPets = 0;
-       
-        if (anketa.hasPets)
-        {
-            Console.Write("{0}, сколько животных у вас живет? ", anketa.name);
-            strPar = Console.ReadLine();
-
-            while (!CheckCorrect(strPar, out intPar))
+            get
             {
-                Console.Write("Количество животных  введено некорртно, повторите ввод еще раз :");
-                strPar = Console.ReadLine();
+                return address;
             }
 
-            anketa.countPets = intPar;
-            
         }
-        anketa.PetsName = GetPetsName(anketa.countPets);
 
-        anketa.CountColors = 0;
-        Console.Write("{0}, Введите количество любимых цветов: ", anketa.name);
-        strPar = Console.ReadLine();
-        while (!CheckCorrect(strPar, out intPar))
+
+        public HomeDelivery() : base()
         {
-            Console.Write("Количкство введено некорртно, повторите ввод еще раз :");
-            strPar = Console.ReadLine();
+
         }
-        anketa.CountColors = intPar;
-        anketa.favoritColors = GetFavoritColors(anketa.CountColors);
-            
-        return anketa;
+
     }
 
-    static void ShowAnketa((string name, string lastName, int age, bool hasPets, int countPets, int CountColors, string[] PetsName, string[] favoritColors) user)
+    public class PickPointDelivery : Delivery
     {
-        Console.WriteLine("Ваше имя и фамилия {0} {1}", user.name, user.lastName );
-        Console.WriteLine("Ваш возраст: {0}", user.age);
-        if (user.hasPets)
+        protected string address;
+
+        public override string Address
+        {
+            get
+            {
+                return address;
+            }
+
+        }
+
+        DeliveryMode delivery;
+        public PickPointDelivery() : base()
         {
 
-            ShowPets(user.name, user.PetsName);
         }
-        ShowColors(user.name, user.favoritColors);
+
+        public int PPointDelivery(DeliveryMode pDelivery)
+        {
+            int Return = 1;
+            delivery = pDelivery;
+
+            return Return;
+        }
+
     }
-       
-      
+
+    public class ShopDelivery : Delivery
+    {
+        protected string address;
+
+        public override string Address
+        {
+            get
+            {
+                return address;
+            }
+
+        }
+
+        public ShopDelivery() : base()
+        {
+
+        }
+    }
+
+    public class DeliveryMode
+    {
+
+    }
+
+    class Order<TDelivery, TPay, TTov>
+        where TDelivery : Delivery
+        where TPay : Pay
+        where TTov : Tov
+    {
+        public TDelivery Delivery;
+
+        public TPay Pay;
+
+        public TTov Tov;
+
+        public int Number;
+
+        public string Description;
+
+
+        public void DisplayAddress()
+        {
+            Console.WriteLine(Delivery.Address);
+        }
+
+
+    }
+
+    public abstract class Tov
+    {
+       public int TypeTov;
+       public string articul;
+       public string nTov;
+       public decimal price;
+    }
+
+  
 }
