@@ -1,190 +1,78 @@
 ﻿using System;
+using System.IO;
 
-class MainClass
+
+class Program
 {
-    public class Program
+    static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        // получим папку
+
+        Console.WriteLine("Введите путь ");
+        string pathDir = Console.ReadLine();
+
+
+        if (!Directory.Exists(pathDir))
         {
+            Console.WriteLine("Нет указанго пути");
         }
-    }
-
-    public abstract class Pay
-    {
-
-        public static decimal Sum { get; set; }
-        public static int NomOrder { get; set; }
-
-        public Pay(decimal sum, int nomorder)
+        else
         {
-            Sum = sum;
-            NomOrder = nomorder;
-        }
+            string[] subdir = Directory.GetDirectories(pathDir);
+            string[] fl = Directory.GetFiles(pathDir);
 
-        public abstract void PayOrder();
+            DateTime dt,curdt;
+           
+            TimeSpan diff;
 
-    }
-    public class PayOrderCustomer : Pay
-    {
-        private string NomCard;
-
-
-        public string Nomcard
-        {
-            set
+            foreach (string sd in subdir)
             {
-                if (value == null)
+               dt = Directory.GetLastWriteTime(sd);
+                try
                 {
-                    NomCard = "no";
+                    curdt = DateTime.Now;
+                    diff = curdt - dt;
+                     
+
+                    if (diff.TotalMinutes >  30.0)
+                    {
+                 
+                       Directory.Delete(sd, true);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    NomCard = value;
+                    Console.WriteLine(" Произошла ошибка : {0}", ex.Message);
                 }
+
+
             }
-            get
+
+            foreach (string fi in fl )
             {
-                return NomCard;
+                var filefordel = new FileInfo(fi);
+                dt = filefordel.LastWriteTime;
+
+                try
+                {
+                    curdt = DateTime.Now;
+                    diff = curdt - dt;
+
+
+                    if (diff.TotalMinutes > 30.0)
+                    {
+                        filefordel.Delete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(" Произошла ошибка обработки файлов: {0}", ex.Message);
+                }
+
+
             }
         }
-
-
-
-        public PayOrderCustomer(string nomcard) : base(Sum, NomOrder)
-        {
-            this.Nomcard = nomcard;
-        }
-
-
-
-        public override void PayOrder()
-        {
-
-        }
-
-        PayNal PayN;
-        public PayOrderCustomer(PayNal pn) : base(Sum, NomOrder)
-        {
-            PayN = pn;
-        }
     }
 
-    public class PayNal
-    {
-        //оплата наличкой
-    }
 
-    public abstract class Delivery
-    {
-        public abstract string Address { get; }
-        public DateTime DateDelivery;
-    }
-
-    public class HomeDelivery : Delivery
-    {
-        protected string address;
-
-        public override string Address
-        {
-            get
-            {
-                return address;
-            }
-
-        }
-
-
-        public HomeDelivery() : base()
-        {
-
-        }
-
-    }
-
-    public class PickPointDelivery : Delivery
-    {
-        protected string address;
-
-        public override string Address
-        {
-            get
-            {
-                return address;
-            }
-
-        }
-
-        DeliveryMode delivery;
-        public PickPointDelivery() : base()
-        {
-
-        }
-
-        public int PPointDelivery(DeliveryMode pDelivery)
-        {
-            int Return = 1;
-            delivery = pDelivery;
-
-            return Return;
-        }
-
-    }
-
-    public class ShopDelivery : Delivery
-    {
-        protected string address;
-
-        public override string Address
-        {
-            get
-            {
-                return address;
-            }
-
-        }
-
-        public ShopDelivery() : base()
-        {
-
-        }
-    }
-
-    public class DeliveryMode
-    {
-
-    }
-
-    class Order<TDelivery, TPay, TTov>
-        where TDelivery : Delivery
-        where TPay : Pay
-        where TTov : Tov
-    {
-        public TDelivery Delivery;
-
-        public TPay Pay;
-
-        public TTov Tov;
-
-        public int Number;
-
-        public string Description;
-
-
-        public void DisplayAddress()
-        {
-            Console.WriteLine(Delivery.Address);
-        }
-
-
-    }
-
-    public abstract class Tov
-    {
-       public int TypeTov;
-       public string articul;
-       public string nTov;
-       public decimal price;
-    }
-
-  
 }
