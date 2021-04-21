@@ -1,78 +1,37 @@
 ﻿using System;
 using System.IO;
-
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 class Program
 {
+    delegate int NumSort();
+
     static void Main(string[] args)
     {
-        // получим папку
+        int parsort ;
+       
+        var s1 = new MyList { LastName = "Петров", Name = "Иван" };
+        var s2 = new MyList { LastName = "Сидоров", Name = "Николай" };
+        var s3 = new MyList { LastName = "Иванов", Name = "Константин" };
+        var s4 = new MyList { LastName = "Романов", Name = "Петр" };
+        var s5 = new MyList { LastName = "Белкина", Name = "Вера" };
 
-        Console.WriteLine("Введите путь ");
-        string pathDir = Console.ReadLine();
-
-
-        if (!Directory.Exists(pathDir))
-        {
-            Console.WriteLine("Нет указанго пути");
-        }
-        else
-        {
-            string[] subdir = Directory.GetDirectories(pathDir);
-            string[] fl = Directory.GetFiles(pathDir);
-
-            DateTime dt,curdt;
-           
-            TimeSpan diff;
-
-            foreach (string sd in subdir)
-            {
-               dt = Directory.GetLastWriteTime(sd);
-                try
-                {
-                    curdt = DateTime.Now;
-                    diff = curdt - dt;
-                     
-
-                    if (diff.TotalMinutes >  30.0)
-                    {
-                 
-                       Directory.Delete(sd, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(" Произошла ошибка : {0}", ex.Message);
-                }
+        List<MyList> myLists = new List<MyList>();
 
 
-            }
-
-            foreach (string fi in fl )
-            {
-                var filefordel = new FileInfo(fi);
-                dt = filefordel.LastWriteTime;
-
-                try
-                {
-                    curdt = DateTime.Now;
-                    diff = curdt - dt;
+        myLists.Add(s1);
+        myLists.Add(s2);
+        myLists.Add(s3);
+        myLists.Add(s4);
+        myLists.Add(s5);
 
 
-                    if (diff.TotalMinutes > 30.0)
-                    {
-                        filefordel.Delete();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(" Произошла ошибка обработки файлов: {0}", ex.Message);
-                }
+        NumSort numSort = GetNumBerForSort.GetNumberSort;
+        parsort = numSort.Invoke();
 
+        MyList.sotrMyList(myLists, parsort);
 
-            }
-        }
     }
-
 
 }
